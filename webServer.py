@@ -11,13 +11,13 @@ import picamera
 app = Flask(__name__)
 camera = picamera.PiCamera()
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
-@app.route('/captureImage', methods=['GET'])
+@app.route('/captureImage', methods=['POST'])
 def captureImage():
-    camera.capture('./static/test.jpg')
+    camera.capture('./static/mostRecentImage.jpg')
     return 'DONE'
 
 http_server = HTTPServer(WSGIContainer(app))
